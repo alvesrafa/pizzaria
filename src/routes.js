@@ -1,7 +1,8 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Main from 'pages/Main';
-import Login from 'pages/Login';
+const Main = lazy(() => import('pages/Main'));
+const Login = lazy(() => import('pages/Login'));
 
 export default function Routes() {
   return (
