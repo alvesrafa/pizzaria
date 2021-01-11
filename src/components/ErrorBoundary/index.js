@@ -1,15 +1,16 @@
-import { useMemo } from 'react-native';
-
+import React, { PureComponent } from 'react';
 import ErrorPage from '../ErrorPage';
+class ErrorBoundary extends PureComponent {
+  state = { hasError: false };
+  static getDerivedStateFromError(error) {
+    console.log('Erro ao gerar build ----->', error);
+    return { hasError: true };
+  }
 
-const ErrorBoundary = ({ hasError, children }) => {
-  const errorComponent = useMemo(() => {
-    if (hasError) return <ErrorPage />;
+  render() {
+    if (this.state.hasError) return <ErrorPage />;
 
-    return children;
-  }, [hasError]);
-
-  return errorComponent;
-};
-
+    return this.props.children;
+  }
+}
 export default ErrorBoundary;
