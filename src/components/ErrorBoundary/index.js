@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import ErrorPage from '../ErrorPage';
+import ErrorPage from 'components/ErrorPage';
 class ErrorBoundary extends PureComponent {
   state = { hasError: false };
   static getDerivedStateFromError(error) {
