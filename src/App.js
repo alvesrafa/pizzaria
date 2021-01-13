@@ -1,6 +1,6 @@
 import { Suspense, createContext } from 'react';
 import Routes from 'routes';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import GlobalStyle from 'styles/GlobalStyles';
 import { ThemeProvider } from 'styled-components';
 
@@ -16,7 +16,7 @@ function App() {
         <GlobalStyle />
         <BrowserRouter>
           <Suspense fallback={<LoadingPage background={light.background} />}>
-            <Routes />
+            <Route component={Routes} />
           </Suspense>
         </BrowserRouter>
       </AuthProvider>
