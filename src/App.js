@@ -28,10 +28,7 @@ export default function App({ location }) {
     });
   }, []);
 
-  if (!didCheckUserIn) {
-    console.log('ainda não checkou');
-    return <LoadingPage />;
-  }
+  if (!didCheckUserIn) return <LoadingPage />;
 
   if (isLogged && location.pathname === '/login') return <Redirect to="/" />;
 

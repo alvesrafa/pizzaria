@@ -8,10 +8,11 @@ import { dark, light } from './styles/theme';
 import LoadingPage from 'components/LoadingPage';
 
 import AuthProvider from 'services/context/auth';
+import AppProvider from 'services/context/app';
 
 function Application() {
   return (
-    <ThemeProvider theme={light}>
+    <AppProvider>
       <AuthProvider>
         <GlobalStyle />
         <BrowserRouter>
@@ -20,7 +21,7 @@ function Application() {
           </Suspense>
         </BrowserRouter>
       </AuthProvider>
-    </ThemeProvider>
+    </AppProvider>
   );
 }
 

@@ -3,6 +3,8 @@ import { Switch, Route } from 'react-router-dom';
 
 import { Container } from './styles';
 
+import Header from 'components/Header';
+
 const Main = () => {
   const routes = useMemo(() => {
     let test = [
@@ -18,9 +20,10 @@ const Main = () => {
       />
     ));
   }, []);
+
   return (
     <Container>
-      <h1>Main</h1>
+      <Header />
       <Switch>{routes}</Switch>
     </Container>
   );
