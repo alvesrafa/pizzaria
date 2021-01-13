@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Root from './root';
 import ErrorBoundary from 'components/ErrorBoundary';
 
 ReactDOM.render(
   <React.StrictMode>
     <ErrorBoundary hasError={false}>
-      <App />
+      <Root />
     </ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')
