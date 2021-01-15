@@ -22,7 +22,10 @@ export default function App({ location }) {
       console.log('E ai, Beleza?! 🧡');
       setUserInfo({
         isLogged: !!user,
-        user,
+        user: !!user && {
+          ...user,
+          firstName: user.displayName.split(' ')[0],
+        },
       });
       setDidCheckUserIn(true);
     });
