@@ -9,17 +9,17 @@ import Footer from 'components/Footer';
 const ChooseSize = lazy(() => import('./ChooseSize'));
 
 const Main = () => {
-  const routes = useMemo(() => {}, []);
-
   return (
     <Container>
       <Header />
-      <Suspense fallback={'espere um teco ai'}>
+
+      {/* <Suspense fallback={'espere um teco ai'}>
         <Switch>
           <Route path="/" component={ChooseSize} />
         </Switch>
       </Suspense>
-      <Footer />
+
+      <Footer /> */}
     </Container>
   );
 };

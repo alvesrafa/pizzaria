@@ -1,10 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.main`
-  flex: 1;
+export const Container = styled.div`
   overflow-y: auto;
   padding: 24px;
-  max-width: 1280px;
   width: 100%;
 
   display: flex;

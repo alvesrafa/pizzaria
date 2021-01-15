@@ -19,12 +19,11 @@ const Header = () => {
         <div className="home-wrapper">
           <button onClick={toggleTheme}>
             {theme === 'light' ? (
-              <FaMoon size={20} color="#F5B04D" />
-            ) : (
               <FaSun size={20} color="#F5C84D" />
+            ) : (
+              <FaMoon size={20} color="#F5B04D" />
             )}
           </button>
-          <h1>Logomarca</h1>
         </div>
 
         <div className="logout-wrapper">
