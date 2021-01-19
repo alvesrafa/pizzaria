@@ -3,3 +3,9 @@ export const singularOrPlural = (number, singular, plural) => {
 
   return plural;
 };
+
+export const numberToMoney = (number) =>
+  new Intl.NumberFormat([], {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(number);

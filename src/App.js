@@ -7,6 +7,7 @@ import { AuthContext } from 'services/context/auth';
 import firebase from 'services/firebase';
 
 import LoadingPage from 'components/LoadingPage';
+import { LOGIN } from 'utils/routes';
 
 const Main = lazy(() => import('pages/Main'));
 const Login = lazy(() => import('pages/Login'));
@@ -33,14 +34,13 @@ export default function App({ location }) {
 
   if (!didCheckUserIn) return <LoadingPage />;
 
-  if (isLogged && location.pathname === '/login') return <Redirect to="/" />;
+  if (isLogged && location.pathname === LOGIN) return <Redirect to="/" />;
 
-  if (!isLogged && location.pathname !== '/login')
-    return <Redirect to="/login" />;
+  if (!isLogged && location.pathname !== LOGIN) return <Redirect to={LOGIN} />;
 
   return (
     <Switch>
-      <Route path="/login" component={Login} />
+      <Route path={LOGIN} component={Login} />
       {/* <Route path="/register" component={Register} /> */}
       <Route component={Main} />
     </Switch>

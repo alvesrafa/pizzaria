@@ -10,7 +10,12 @@ const ChooseSize = () => {
   const { user } = userInfo;
 
   const PizzaSize = ({ size }) => (
-    <ItemSize to="/flavour">
+    <ItemSize
+      to={{
+        pathname: '/flavours',
+        state: size,
+      }}
+    >
       <div className="item-header">
         <Pizza>
           <span>{size.size}cm</span>
