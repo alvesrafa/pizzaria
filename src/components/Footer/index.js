@@ -1,25 +1,61 @@
-import { Container } from './styles';
-import { useAuth } from 'services';
+import { useMemo } from 'react';
+import { withRouter, useHistory, Redirect } from 'react-router-dom';
 
-const Footer = (props) => {
+import Button from 'components/Button';
+import { Container } from './styles';
+import { useAuth, useOrders } from 'services';
+
+import { singularOrPlural } from 'utils/functions';
+
+const Footer = ({ location }) => {
+  const { goBack, order } = useOrders();
+  console.log('order', order);
   const { userInfo } = useAuth();
+  const history = useHistory();
   const { user } = userInfo;
 
-  console.log('props', props);
+  const render = useMemo(() => {
+    if (!order) return <Redirect to="/" />;
 
-  return (
-    <Container>
-      <div className="content">
-        <div className="pedido">
-          <p>{user.firstName} seu pedido é: </p>
-          <p>
-            Pizza <strong>MÉDIA</strong> - (6 fatias 2 sabores)
-          </p>
+    const { name, slices, flavours, selectedFlavours } = order;
+
+    return (
+      <Container>
+        <div className="content">
+          <div className="pedido">
+            <p>{user.firstName} seu pedido é: </p>
+            <p>
+              Pizza <strong>{name.toUpperCase()}</strong> - ({' '}
+              {singularOrPlural(
+                slices,
+                `${slices} pedaço`,
+                `${slices} pedaços`
+              )}{' '}
+              ,{' '}
+              {singularOrPlural(
+                flavours,
+                `${flavours} sabor`,
+                `${flavours} sabores`
+              )}
+              )
+            </p>
+            <p>
+              {selectedFlavours &&
+                selectedFlavours.map((selecteds) => `${selecteds.name}, `)}
+            </p>
+          </div>
+          <div className="actions">
+            <Button onClick={history.goBack}>Voltar</Button>
+            <Button background="red" onClick={goBack}>
+              Selecionar quantidade
+            </Button>
+          </div>
         </div>
-        <div className="actions">botao</div>
-      </div>
-    </Container>
-  );
+      </Container>
+    );
+  }, [order]);
+
+  return render;
 };
 
-export default Footer;
+export default withRouter(Footer);

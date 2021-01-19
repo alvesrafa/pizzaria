@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 export const Container = styled.div`
   width: 100%;
 
-  @media (min-width: 500px) {
-    padding: 12px;
+  @media (max-width: 550px) {
+    padding: 16px;
   }
-  @media (min-width: 800px) {
-    padding: 24px;
+  @media (max-width: 440px) {
+    padding: 32px;
   }
-
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -16,14 +16,10 @@ const Main = () => {
     <Container>
       <Header />
 
-      <main>
-        <Switch>
-          <Route path={routes.CHOOSE_SIZE} exact component={ChooseSize} />
-          <Route path={routes.CHOOSE_FLAVOUR} component={ChooseFlavours} />
-        </Switch>
-      </main>
-
-      <Footer />
+      <Switch>
+        <Route path={routes.CHOOSE_SIZE} exact component={ChooseSize} />
+        <Route path={routes.CHOOSE_FLAVOUR} component={ChooseFlavours} />
+      </Switch>
     </Container>
   );
 };

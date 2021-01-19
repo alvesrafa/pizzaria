@@ -8,15 +8,4 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
-  > main {
-    overflow-y: auto;
-
-    @media (max-width: 550px) {
-      padding: 16px;
-    }
-    @media (max-width: 440px) {
-      padding: 32px;
-    }
-  }
 `;

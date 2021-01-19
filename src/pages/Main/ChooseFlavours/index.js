@@ -1,16 +1,20 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { useHistory, Redirect } from 'react-router-dom';
 import { singularOrPlural, numberToMoney } from 'utils/functions';
+import { CHOOSE_SIZE, MAIN } from 'utils/routes';
 import { Container, PizzaFlavour as ItemFlavour } from './styles';
 import { toast } from 'react-toastify';
+import Footer from 'components/Footer';
+import { useAuth, useOrders } from 'services';
 
-import { useAuth } from 'services';
-
-const ChooseFlavours = ({ location }) => {
-  const { flavours, id, name, slices } = location?.state;
+const ChooseFlavours = () => {
   const [selectedFlavors, setSelectedFlavours] = useState([]);
-  const { userInfo } = useAuth();
-  const { user } = userInfo;
+  const { order } = useOrders();
+  const { flavours, id } = order;
+
+  useEffect(() => {
+    setSelectedFlavours([]);
+  }, []);
 
   const PizzaFlavour = ({ flavour, className }) => (
     <ItemFlavour className={className} onClick={() => onSelectFlavour(flavour)}>
@@ -91,28 +95,31 @@ const ChooseFlavours = ({ location }) => {
   ];
 
   return (
-    <Container>
-      <div className="header-main">
-        <h3>
-          {' '}
-          Escolha até{` `}
-          {singularOrPlural(
-            flavours,
-            `${flavours} sabor`,
-            `${flavours} sabores`
-          )}
-        </h3>
-      </div>
-      <div className="content-main">
-        {sabores.map((flavour) => (
-          <PizzaFlavour
-            className={isSelected(flavour.id) ? 'active' : ''}
-            key={flavour.id}
-            flavour={flavour}
-          />
-        ))}
-      </div>
-    </Container>
+    <>
+      <Container>
+        <div className="header-main">
+          <h3>
+            {' '}
+            Escolha até{` `}
+            {singularOrPlural(
+              flavours,
+              `${flavours} sabor`,
+              `${flavours} sabores`
+            )}
+          </h3>
+        </div>
+        <div className="content-main">
+          {sabores.map((flavour) => (
+            <PizzaFlavour
+              className={isSelected(flavour.id) ? 'active' : ''}
+              key={flavour.id}
+              flavour={flavour}
+            />
+          ))}
+        </div>
+      </Container>
+      <Footer />
+    </>
   );
 };
 

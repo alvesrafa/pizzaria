@@ -7,11 +7,13 @@ export const Container = styled.div`
   justify-content: center;
   width: 100%;
 
-  @media (min-width: 500px) {
-    padding: 12px;
+  overflow-y: auto;
+
+  @media (max-width: 550px) {
+    padding: 16px;
   }
-  @media (min-width: 800px) {
-    padding: 24px;
+  @media (max-width: 440px) {
+    padding: 32px;
   }
 
   display: flex;
@@ -35,7 +37,7 @@ export const Container = styled.div`
   }
 `;
 
-export const PizzaSize = styled(Link)`
+export const PizzaSize = styled.div`
   flex: 1;
   margin: 12px;
   border: 1px solid ${(props) => props.theme.black};

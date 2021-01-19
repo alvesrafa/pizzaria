@@ -1,43 +1,51 @@
+import { useHistory } from 'react-router-dom';
 import { singularOrPlural } from 'utils/functions';
 import { Container, Pizza, PizzaSize as ItemSize } from './styles';
 
-import { useAuth } from 'services';
+import { useAuth, useOrders } from 'services';
+import { CHOOSE_FLAVOUR } from 'utils/routes';
+
+import Footer from 'components/Footer';
 
 const ChooseSize = () => {
+  const history = useHistory();
   const { userInfo } = useAuth();
+  const { addData } = useOrders();
   const { user } = userInfo;
 
-  const PizzaSize = ({ size }) => (
-    <ItemSize
-      to={{
-        pathname: '/flavours',
-        state: size,
-      }}
-    >
-      <div className="item-header">
-        <Pizza>
-          <span>{size.size}cm</span>
-        </Pizza>
-      </div>
-      <div className="item-body">
-        <h4>{size.name}</h4>
+  const handleSelectSize = (size) => {
+    addData(size);
+    history.push(CHOOSE_FLAVOUR);
+  };
 
-        <p>
-          {singularOrPlural(
-            size.slices,
-            `${size.slices} fatia`,
-            `${size.slices} fatias`
-          )}
-          ,{' '}
-          {singularOrPlural(
-            size.flavours,
-            `${size.flavours} sabor`,
-            `${size.flavours} sabores`
-          )}
-        </p>
-      </div>
-    </ItemSize>
-  );
+  const PizzaSize = ({ size }) => {
+    return (
+      <ItemSize onClick={() => handleSelectSize(size)}>
+        <div className="item-header">
+          <Pizza>
+            <span>{size.size}cm</span>
+          </Pizza>
+        </div>
+        <div className="item-body">
+          <h4>{size.name}</h4>
+
+          <p>
+            {singularOrPlural(
+              size.slices,
+              `${size.slices} fatia`,
+              `${size.slices} fatias`
+            )}
+            ,{' '}
+            {singularOrPlural(
+              size.flavours,
+              `${size.flavours} sabor`,
+              `${size.flavours} sabores`
+            )}
+          </p>
+        </div>
+      </ItemSize>
+    );
+  };
   const pizzaSizes = [
     {
       id: 0,
@@ -62,18 +70,21 @@ const ChooseSize = () => {
     },
   ];
   return (
-    <Container>
-      <div className="header-main">
-        <h3>E ai? qual vai ser {user.firstName}?</h3>
-        <h4>Escolha o sabor da sua pizza</h4>
-      </div>
+    <>
+      <Container>
+        <div className="header-main">
+          <h3>E ai? qual vai ser {user.firstName}?</h3>
+          <h4>Escolha o sabor da sua pizza</h4>
+        </div>
 
-      <div className="content-main">
-        {pizzaSizes.map((size) => (
-          <PizzaSize key={size.id} size={size} />
-        ))}
-      </div>
-    </Container>
+        <div className="content-main">
+          {pizzaSizes.map((size) => (
+            <PizzaSize key={size.id} size={size} />
+          ))}
+        </div>
+      </Container>
+      <div />
+    </>
   );
 };
 
