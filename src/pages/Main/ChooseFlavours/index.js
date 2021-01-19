@@ -1,15 +1,15 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 
 import { singularOrPlural, numberToMoney } from 'utils/functions';
 import { Container, PizzaFlavour as ItemFlavour } from './styles';
-
-import { AuthContext } from 'services/context/auth';
 import { toast } from 'react-toastify';
 
+import { useAuth } from 'services';
+
 const ChooseFlavours = ({ location }) => {
-  const { flavours, id } = location?.state;
+  const { flavours, id, name, slices } = location?.state;
   const [selectedFlavors, setSelectedFlavours] = useState([]);
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo } = useAuth();
   const { user } = userInfo;
 
   const PizzaFlavour = ({ flavour, className }) => (

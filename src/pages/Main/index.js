@@ -15,6 +15,7 @@ const Main = () => {
   return (
     <Container>
       <Header />
+
       <main>
         <Switch>
           <Route path={routes.CHOOSE_SIZE} exact component={ChooseSize} />

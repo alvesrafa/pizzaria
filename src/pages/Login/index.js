@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import { AiOutlineGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { MdPersonAdd } from 'react-icons/md';
@@ -7,10 +6,10 @@ import logo from 'assets/svg/logo.svg';
 import { Container } from './styles';
 import Button from 'components/Button';
 
-import { AuthContext } from 'services/context/auth';
+import { useAuth } from 'services';
 
 const Login = () => {
-  const { loginWithGitHub } = useContext(AuthContext);
+  const { loginWithGitHub } = useAuth;
 
   return (
     <Container>

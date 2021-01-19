@@ -1,7 +1,9 @@
-import { createContext, useCallback, useState, useEffect } from 'react';
+import { createContext, useCallback, useState, useContext } from 'react';
 import firebase from 'services/firebase';
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
+
+export const useAuth = () => useContext(AuthContext);
 
 function Auth({ children }) {
   const [userInfo, setUserInfo] = useState({ isLogged: false, user: null });

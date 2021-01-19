@@ -1,9 +1,9 @@
-import { lazy, useEffect, useContext, useState } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import { Redirect } from 'react-router-dom';
 
-import { AuthContext } from 'services/context/auth';
+import { useAuth } from 'services';
 import firebase from 'services/firebase';
 
 import LoadingPage from 'components/LoadingPage';
@@ -13,7 +13,7 @@ const Main = lazy(() => import('pages/Main'));
 const Login = lazy(() => import('pages/Login'));
 
 export default function App({ location }) {
-  const { setUserInfo, userInfo } = useContext(AuthContext);
+  const { setUserInfo, userInfo } = useAuth();
   const { isLogged } = userInfo;
 
   const [didCheckUserIn, setDidCheckUserIn] = useState(false);

@@ -1,12 +1,10 @@
-import { useContext } from 'react';
-
 import { singularOrPlural } from 'utils/functions';
 import { Container, Pizza, PizzaSize as ItemSize } from './styles';
 
-import { AuthContext } from 'services/context/auth';
+import { useAuth } from 'services';
 
 const ChooseSize = () => {
-  const { userInfo } = useContext(AuthContext);
+  const { userInfo } = useAuth();
   const { user } = userInfo;
 
   const PizzaSize = ({ size }) => (

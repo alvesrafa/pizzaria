@@ -1,17 +1,16 @@
 import { useContext } from 'react';
-import { Container, LogoutIcon } from './styles';
+import { Container } from './styles';
 
 import { FaMoon } from 'react-icons/fa';
 import { FaSun } from 'react-icons/fa';
 
-import { AuthContext } from 'services/context/auth';
-import { AppContext } from 'services/context/app';
-
 import { ThemeContext } from 'styled-components';
 
+import { useAuth, useApp } from 'services';
+
 const Header = () => {
-  const { logout, userInfo } = useContext(AuthContext);
-  const { toggleTheme, theme } = useContext(AppContext);
+  const { userInfo } = useAuth();
+  const { toggleTheme, theme } = useApp();
 
   const { user } = userInfo;
   const themeContext = useContext(ThemeContext);

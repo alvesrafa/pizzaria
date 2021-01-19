@@ -1,9 +1,11 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useContext } from 'react';
 
 import { ThemeProvider } from 'styled-components';
 import { dark, light } from 'styles/theme';
 
-export const AppContext = createContext();
+const AppContext = createContext();
+
+export const useApp = () => useContext(AppContext);
 
 function App({ children }) {
   const [theme, setTheme] = useState('');
