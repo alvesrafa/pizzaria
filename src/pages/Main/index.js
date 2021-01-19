@@ -12,14 +12,13 @@ const Main = () => {
   return (
     <Container>
       <Header />
-
-      {/* <Suspense fallback={'espere um teco ai'}>
+      <main>
         <Switch>
-          <Route path="/" component={ChooseSize} />
+          <Route path="/size" component={ChooseSize} />
         </Switch>
-      </Suspense>
+      </main>
 
-      <Footer /> */}
+      <Footer />
     </Container>
   );
 };

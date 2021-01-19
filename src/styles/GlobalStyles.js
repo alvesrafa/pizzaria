@@ -22,7 +22,7 @@ export default createGlobalStyle`
     color: ${({ theme }) => theme.black};
 
     display: flex;
-    flex-direction: column;
+    flex-direction: center;
     align-items: center;
 
     width: 100vw;

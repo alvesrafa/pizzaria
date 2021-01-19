@@ -3,11 +3,19 @@ import { FiLogOut } from 'react-icons/fi';
 
 export const Container = styled.div`
   width: 100%;
-  background-color: ${(props) => props.theme.background}88;
+  background-color: ${(props) => props.theme.background};
+  height: max-content;
 
   /* box-shadow: 0 4px 20px -2px ${(props) => props.theme.shadow}; */
   display: flex;
   justify-content: center;
+
+  @media (max-width: 800px) {
+    height: 70px;
+  }
+  @media (max-width: 500px) {
+    height: 80px;
+  }
 
   .header-wrapper {
     width: 100%;
@@ -19,38 +27,51 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
 
-    .home-wrapper {
+    .left-side {
       display: flex;
       align-items: center;
-
-      > button {
-        margin-right: 8px;
-        cursor: pointer;
-        padding: 6px;
-        background-color: ${(props) => props.theme.black}88;
-        border-radius: 8px;
+      > img {
+        width: 70px;
+        height: 45px;
+        background: ${(props) => props.theme.gray};
       }
     }
 
-    .logout-wrapper {
+    .right-side {
       display: flex;
       align-items: center;
-    }
-
-    .logout-button {
-      margin-left: 12px;
-      color: ${(props) => props.theme.black};
-      display: flex;
-      align-items: center;
-
-      border-radius: 12px;
-
-      padding: 8px;
-      background: ${(props) => props.theme.primary};
-
-      &:hover {
+      .profile {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        > p {
+          margin: 0 4px;
+        }
+        > img {
+          margin: 6px 12px;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: ${(props) => props.theme.gray};
+          border: 2px solid ${(props) => props.theme.black};
+        }
+      }
+      .button {
+        margin-right: 8px;
         cursor: pointer;
-        opacity: 0.8;
+        padding: 4px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.light {
+          border: 1px solid ${(props) => props.theme.gray};
+          background: ${(props) => props.theme.black};
+        }
+        &.dark {
+          border: 1px solid ${(props) => props.theme.gray};
+          background: ${(props) => props.theme.black};
+        }
       }
     }
   }

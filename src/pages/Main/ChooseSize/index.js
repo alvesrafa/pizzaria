@@ -10,7 +10,7 @@ const ChooseSize = () => {
   const { user } = userInfo;
 
   const PizzaSize = ({ size }) => (
-    <ItemSize>
+    <ItemSize to="/flavour">
       <div className="item-header">
         <Pizza>
           <span>{size.size}cm</span>

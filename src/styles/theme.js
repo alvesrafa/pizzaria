@@ -2,10 +2,11 @@ export const light = {
   background: '#f9f9f9',
   black: '#222222',
   white: '#FFFFFF',
-  gray: '#a4a4a4',
+  gray: '#434343',
+  primary: '#ffc40a',
 
   shadow: '#727275',
-  primary: '#ffc40a',
+
   secondary: '#BF751B',
   tag: '#323235',
   green: '#14b866',
@@ -14,10 +15,10 @@ export const light = {
 };
 
 export const dark = {
-  background: '#f9f9f9',
-  black: '#222222',
-  white: '#FFFFFF',
-  gray: '#a4a4a4',
+  background: '#222222',
+  black: '#f9f9f9',
+  white: '#000',
+  gray: '#bcbcbc',
 
   shadow: '#727275',
   primary: '#ffc40a',

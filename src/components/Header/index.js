@@ -7,30 +7,38 @@ import { FaSun } from 'react-icons/fa';
 import { AuthContext } from 'services/context/auth';
 import { AppContext } from 'services/context/app';
 
+import { ThemeContext } from 'styled-components';
+
 const Header = () => {
   const { logout, userInfo } = useContext(AuthContext);
   const { toggleTheme, theme } = useContext(AppContext);
 
   const { user } = userInfo;
+  const themeContext = useContext(ThemeContext);
 
   return (
     <Container>
       <div className="header-wrapper">
-        <div className="home-wrapper">
-          <button onClick={toggleTheme}>
-            {theme === 'light' ? (
-              <FaSun size={20} color="#F5C84D" />
-            ) : (
-              <FaMoon size={20} color="#F5B04D" />
-            )}
-          </button>
+        <div className="left-side">
+          <h1>Pizzaria tal</h1>
         </div>
-
-        <div className="logout-wrapper">
-          <p>Olá {user.firstName}</p>
-          <button className="logout-button" onClick={logout}>
-            Sair
-            <LogoutIcon />
+        <div className="right-side">
+          <div className="profile">
+            Olá,
+            <p>
+              {` `} {user.firstName}
+            </p>
+            <img />
+          </div>
+          <button
+            className={`button ${theme === 'light' ? 'light' : 'dark'}`}
+            onClick={toggleTheme}
+          >
+            {theme === 'light' ? (
+              <FaSun size={14} color={themeContext.primary} />
+            ) : (
+              <FaMoon size={14} color={themeContext.primary} />
+            )}
           </button>
         </div>
       </div>
