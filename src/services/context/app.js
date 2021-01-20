@@ -5,12 +5,15 @@ import { dark, light } from 'styles/theme';
 
 import OrdersProvider from './orders';
 
+import { ThemeContext } from 'styled-components';
 const AppContext = createContext();
 
 export const useApp = () => useContext(AppContext);
 
 function App({ children }) {
   const [theme, setTheme] = useState('');
+
+  const themeContext = useContext(ThemeContext);
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
@@ -21,6 +24,7 @@ function App({ children }) {
       value={{
         theme,
         toggleTheme,
+        themeContext,
       }}
     >
       <OrdersProvider>

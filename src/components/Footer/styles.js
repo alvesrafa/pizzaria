@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const Container = styled.div`
   width: 100%;
   box-shadow: 0 4px 20px -2px ${(props) => props.theme.shadow};
-
+  display: flex;
+  justify-content: center;
   .content {
     width: 100%;
     max-width: 1280px;

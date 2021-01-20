@@ -1,11 +1,9 @@
 import { useHistory } from 'react-router-dom';
+
 import { singularOrPlural } from 'utils/functions';
 import { Container, Pizza, PizzaSize as ItemSize } from './styles';
-
 import { useAuth, useOrders } from 'services';
 import { CHOOSE_FLAVOUR } from 'utils/routes';
-
-import Footer from 'components/Footer';
 
 const ChooseSize = () => {
   const history = useHistory();
@@ -74,7 +72,7 @@ const ChooseSize = () => {
       <Container>
         <div className="header-main">
           <h3>E ai? qual vai ser {user.firstName}?</h3>
-          <h4>Escolha o sabor da sua pizza</h4>
+          <h4>Escolha o tamanho da sua pizza</h4>
         </div>
 
         <div className="content-main">

@@ -10,6 +10,7 @@ import routes from 'utils/routes';
 
 const ChooseSize = lazy(() => import('./ChooseSize'));
 const ChooseFlavours = lazy(() => import('./ChooseFlavours'));
+const ChooseQuantity = lazy(() => import('./ChooseQuantity'));
 
 const Main = () => {
   return (
@@ -19,6 +20,7 @@ const Main = () => {
       <Switch>
         <Route path={routes.CHOOSE_SIZE} exact component={ChooseSize} />
         <Route path={routes.CHOOSE_FLAVOUR} component={ChooseFlavours} />
+        <Route path={routes.CHOOSE_QNT} component={ChooseQuantity} />
       </Switch>
     </Container>
   );

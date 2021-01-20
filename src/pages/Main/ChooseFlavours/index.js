@@ -1,17 +1,22 @@
-import { useState, useEffect } from 'react';
-import { useHistory, Redirect } from 'react-router-dom';
-import { singularOrPlural, numberToMoney } from 'utils/functions';
-import { CHOOSE_SIZE, MAIN } from 'utils/routes';
-import { Container, PizzaFlavour as ItemFlavour } from './styles';
+import { useState, useEffect, useContext } from 'react';
+import { ThemeContext } from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+import { singularOrPlural, numberToMoney } from 'utils/functions';
+import { CHOOSE_QNT } from 'utils/routes';
+import { Container, PizzaFlavour as ItemFlavour } from './styles';
 import Footer from 'components/Footer';
-import { useAuth, useOrders } from 'services';
+import { useOrders } from 'services';
 
 const ChooseFlavours = () => {
-  const [selectedFlavors, setSelectedFlavours] = useState([]);
-  const { order } = useOrders();
+  const history = useHistory();
+  const [selectedFlavours, setSelectedFlavours] = useState([]);
+  const { order, addData } = useOrders();
   const { flavours, id } = order;
+  const themeContext = useContext(ThemeContext);
 
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     setSelectedFlavours([]);
   }, []);
@@ -29,7 +34,7 @@ const ChooseFlavours = () => {
   );
   const isSelected = (id) => {
     let boolean = false;
-    selectedFlavors.forEach((selected) => {
+    selectedFlavours.forEach((selected) => {
       if (selected.id === id) {
         boolean = true;
       }
@@ -38,14 +43,17 @@ const ChooseFlavours = () => {
     return boolean;
   };
   const onSelectFlavour = (flavour) => {
+    setLoading(true);
     if (isSelected(flavour.id)) {
-      let newValues = selectedFlavors.filter(
+      let newValues = selectedFlavours.filter(
         (selected) => selected.id !== flavour.id
       );
 
+      setTimeout(() => setLoading(false), 1);
       return setSelectedFlavours(newValues);
     }
-    if (selectedFlavors.length >= flavours) {
+    if (selectedFlavours.length >= flavours) {
+      setTimeout(() => setLoading(false), 1);
       return toast.dark(
         `Você só pode selecionar ${singularOrPlural(
           flavours,
@@ -54,8 +62,18 @@ const ChooseFlavours = () => {
         )}`
       );
     }
-
-    setSelectedFlavours([...selectedFlavors, flavour]);
+    setTimeout(() => setLoading(false), 1);
+    setSelectedFlavours([...selectedFlavours, flavour]);
+  };
+  const handleNextPage = () => {
+    console.log(selectedFlavours.length);
+    if (selectedFlavours.length < 1) {
+      return toast.dark('Informe pelo menos 1 sabor');
+    }
+    addData({
+      selectedFlavours,
+    });
+    return history.push(CHOOSE_QNT);
   };
 
   const sabores = [
@@ -118,7 +136,24 @@ const ChooseFlavours = () => {
           ))}
         </div>
       </Container>
-      <Footer />
+      {!loading ? (
+        <Footer
+          buttons={[
+            {
+              name: 'Voltar',
+              background: themeContext.secondary,
+              onClick: () => history.goBack(),
+            },
+            {
+              name: 'Continuar',
+              background: themeContext.primary,
+              onClick: handleNextPage,
+            },
+          ]}
+        />
+      ) : (
+        <div />
+      )}
     </>
   );
 };

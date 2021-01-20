@@ -7,9 +7,8 @@ import { useAuth, useOrders } from 'services';
 
 import { singularOrPlural } from 'utils/functions';
 
-const Footer = ({ location }) => {
+const Footer = ({ buttons }) => {
   const { goBack, order } = useOrders();
-  console.log('order', order);
   const { userInfo } = useAuth();
   const history = useHistory();
   const { user } = userInfo;
@@ -45,10 +44,15 @@ const Footer = ({ location }) => {
             </p>
           </div>
           <div className="actions">
-            <Button onClick={history.goBack}>Voltar</Button>
-            <Button background="red" onClick={goBack}>
-              Selecionar quantidade
-            </Button>
+            {buttons.map((button, i) => (
+              <Button
+                key={i}
+                background={button.background}
+                onClick={button.onClick}
+              >
+                {button.name}
+              </Button>
+            ))}
           </div>
         </div>
       </Container>

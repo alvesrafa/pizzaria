@@ -1,9 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
-  :root {
-    font-size: 85%;
-  }
+ 
   * {
     margin: 0;
     padding: 0;

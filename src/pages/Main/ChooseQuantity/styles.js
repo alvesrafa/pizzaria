@@ -1,13 +1,7 @@
 import styled from 'styled-components';
-
 import { Link } from 'react-router-dom';
 export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-
-  overflow-y: auto;
 
   @media (max-width: 550px) {
     padding: 16px;
@@ -15,7 +9,6 @@ export const Container = styled.div`
   @media (max-width: 440px) {
     padding: 32px;
   }
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +16,10 @@ export const Container = styled.div`
 
   .header-main {
     text-align: center;
+    > h3 {
+    }
+    > h4 {
+    }
   }
   .content-main {
     width: 100%;
@@ -33,7 +30,7 @@ export const Container = styled.div`
   }
 `;
 
-export const PizzaSize = styled.a`
+export const PizzaFlavour = styled.div`
   flex: 1;
   margin: 12px;
   border: 1px solid ${(props) => props.theme.black};
@@ -43,6 +40,10 @@ export const PizzaSize = styled.a`
   background: ${(props) => props.theme.background};
   cursor: pointer;
   transition: all 0.4s;
+
+  &.active {
+    background: ${(props) => props.theme.primary};
+  }
   &:hover,
   &:focus {
     transform: scale(0.95);
@@ -55,55 +56,25 @@ export const PizzaSize = styled.a`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    text-align: center;
   }
   .item-body {
+    width: 200px;
+
     padding: 12px;
-    > h4 {
-      font-size: 22px;
-    }
-    > p {
-    }
-  }
-`;
-export const Pizza = styled.div`
-  position: relative;
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  border: 1px solid ${(props) => props.theme.gray};
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  > span {
-    font-size: 20px;
-    font-weight: bold;
-    padding: 0;
-    margin: 0;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: ${(props) => props.theme.background};
-    z-index: 2;
-
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-  }
-  &:before,
-  &:after {
-    content: '';
-    position: absolute;
-    background: ${(props) => props.theme.gray};
-    transform: rotate(45deg);
-  }
-  &:before {
-    width: 160px;
-    height: 1px;
-  }
-  &:after {
-    height: 160px;
-    width: 1px;
+    > h3 {
+      background: red;
+      padding: 100px;
+      font-size: 45px;
+      text-align: center;
+    }
+    .actions {
+      display: flex;
+      align-items: center;
+    }
   }
 `;
