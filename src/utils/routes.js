@@ -1,7 +1,8 @@
 export const LOGIN = '/login';
 export const MAIN = '/';
 
-export const CHOOSE_SIZE = '/';
+export const STARTING = '/';
+export const CHOOSE_SIZE = '/sizes';
 export const CHOOSE_FLAVOUR = '/flavours';
 export const CHOOSE_QNT = '/quantity';
 
@@ -11,4 +12,5 @@ export default {
   CHOOSE_SIZE,
   CHOOSE_FLAVOUR,
   CHOOSE_QNT,
+  STARTING,
 };

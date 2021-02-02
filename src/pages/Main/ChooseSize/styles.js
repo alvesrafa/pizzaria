@@ -23,6 +23,7 @@ export const Container = styled.div`
 
   .header-main {
     text-align: center;
+    max-width: 1280px;
   }
   .content-main {
     width: 100%;
@@ -30,6 +31,7 @@ export const Container = styled.div`
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
+    max-width: 1280px;
   }
 `;
 

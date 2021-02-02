@@ -14,7 +14,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  .header-main {
+  .item-main {
     text-align: center;
     > h3 {
     }
@@ -27,54 +27,33 @@ export const Container = styled.div`
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
-  }
-`;
-
-export const PizzaFlavour = styled.div`
-  flex: 1;
-  margin: 12px;
-  border: 1px solid ${(props) => props.theme.black};
-  color: ${(props) => props.theme.black};
-  text-align: center;
-  border-radius: 12px;
-  background: ${(props) => props.theme.background};
-  cursor: pointer;
-  transition: all 0.4s;
-
-  &.active {
-    background: ${(props) => props.theme.primary};
-  }
-  &:hover,
-  &:focus {
-    transform: scale(0.95);
-    color: ${(props) => props.theme.black}88;
-  }
-
-  .item-header {
-    padding: 12px;
-    border-bottom: 1px solid ${(props) => props.theme.black};
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
+    max-width: 1280px;
   }
   .item-body {
-    width: 200px;
-
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 6px;
     > h3 {
-      background: red;
-      padding: 100px;
-      font-size: 45px;
-      text-align: center;
     }
     .actions {
       display: flex;
-      align-items: center;
+      > button {
+        margin: 12px;
+        padding: 6px;
+        border-radius: 8px;
+
+        font-weight: bold;
+        font-size: 22px;
+        background: ${(props) => props.theme.primary};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
     }
   }
 `;

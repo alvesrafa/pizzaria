@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { singularOrPlural, numberToMoney } from 'utils/functions';
@@ -12,8 +12,8 @@ import { useOrders } from 'services';
 const ChooseFlavours = () => {
   const history = useHistory();
   const [selectedFlavours, setSelectedFlavours] = useState([]);
-  const { order, addData } = useOrders();
-  const { flavours, id } = order;
+  const { pizza, addData } = useOrders();
+  const { flavours, id } = pizza;
   const themeContext = useContext(ThemeContext);
 
   const [loading, setLoading] = useState(false);
@@ -111,6 +111,8 @@ const ChooseFlavours = () => {
       },
     },
   ];
+
+  if (!pizza) return <Redirect to="/" />;
 
   return (
     <>

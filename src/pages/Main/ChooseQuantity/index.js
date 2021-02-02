@@ -1,10 +1,14 @@
 import { useState, useEffect, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 
 import { Container } from './styles';
 import Footer from 'components/Footer';
 import { useOrders } from 'services';
+
+import { AiOutlinePlus, AiOutlineLine } from 'react-icons/ai';
+
+import { toast } from 'react-toastify';
 
 export default function ChooseQuantity() {
   const [quantidade, setQuantidade] = useState(1);
@@ -20,9 +24,15 @@ export default function ChooseQuantity() {
 
   const history = useHistory();
   const themeContext = useContext(ThemeContext);
-  const { order } = useOrders();
+  const { pizza, addPizza } = useOrders();
 
-  const handleNextPage = () => {};
+  const handleNextPage = () => {
+    if (quantidade < 1) return toast.error('Quantidade selecionada inválida');
+
+    addPizza(quantidade);
+    history.push('/');
+  };
+  if (!pizza) return <Redirect to="/" />;
 
   return (
     <>
@@ -32,8 +42,15 @@ export default function ChooseQuantity() {
         </div>
         <div className="item-body">
           <h3>{quantidade}</h3>
-          <button onClick={oneMore}>mais</button>
-          <button onClick={oneLess}>menos</button>
+
+          <div className="actions">
+            <button onClick={oneMore}>
+              <AiOutlinePlus />
+            </button>
+            <button onClick={oneLess}>
+              <AiOutlineLine />
+            </button>
+          </div>
         </div>
       </Container>
       <Footer
@@ -46,7 +63,7 @@ export default function ChooseQuantity() {
           {
             name: 'Continuar',
             background: themeContext.primary,
-            onClick: () => handleNextPage(),
+            onClick: handleNextPage,
           },
         ]}
       />

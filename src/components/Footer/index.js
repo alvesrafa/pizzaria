@@ -8,21 +8,28 @@ import { useAuth, useOrders } from 'services';
 import { singularOrPlural } from 'utils/functions';
 
 const Footer = ({ buttons }) => {
-  const { goBack, order } = useOrders();
+  const { order, pizza } = useOrders();
   const { userInfo } = useAuth();
   const history = useHistory();
   const { user } = userInfo;
 
   const render = useMemo(() => {
-    if (!order) return <Redirect to="/" />;
+    if (!pizza) {
+      const { pizzas } = order;
+      return (
+        <Container>
+          <div className="content">Você tem {pizzas.length} no seu pedido</div>
+        </Container>
+      );
+    }
 
-    const { name, slices, flavours, selectedFlavours } = order;
+    const { name, slices, flavours, selectedFlavours } = pizza;
 
     return (
       <Container>
         <div className="content">
           <div className="pedido">
-            <p>{user.firstName} seu pedido é: </p>
+            <p>{user.firstName} pizza sendo montada: </p>
             <p>
               Pizza <strong>{name.toUpperCase()}</strong> - ({' '}
               {singularOrPlural(
@@ -57,7 +64,7 @@ const Footer = ({ buttons }) => {
         </div>
       </Container>
     );
-  }, [order]);
+  }, [pizza]);
 
   return render;
 };

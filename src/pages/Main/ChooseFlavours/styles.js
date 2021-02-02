@@ -27,6 +27,7 @@ export const Container = styled.div`
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
+    max-width: 1280px;
   }
 `;
 
