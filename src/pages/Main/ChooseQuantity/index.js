@@ -1,4 +1,4 @@
-import { useState, useCallback, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 
@@ -12,17 +12,14 @@ import { toast } from 'react-toastify';
 
 export default function ChooseQuantity() {
   const [quantidade, setQuantidade] = useState(1);
-  const [loading, setLoading] = useState(false);
+
   const oneMore = () => {
-    setLoading(true);
     setQuantidade(quantidade + 1);
-    setTimeout(() => setLoading(false), 1);
   };
   const oneLess = () => {
     if (quantidade <= 1) return;
-    setLoading(true);
+
     setQuantidade(quantidade - 1);
-    setTimeout(() => setLoading(false), 1);
   };
 
   const history = useHistory();
@@ -31,8 +28,6 @@ export default function ChooseQuantity() {
 
   const handleNextPage = () => {
     if (quantidade < 1) return toast.error('Quantidade selecionada inválida');
-
-    console.log('A quantidade q to mandando', quantidade);
 
     addPizza(quantidade);
     history.push('/');
@@ -59,24 +54,21 @@ export default function ChooseQuantity() {
           </div>
         </div>
       </Container>
-      {!loading ? (
-        <Footer
-          buttons={[
-            {
-              name: 'Voltar',
-              background: themeContext.secondary,
-              onClick: history.goBack,
-            },
-            {
-              name: 'Continuar',
-              background: themeContext.primary,
-              onClick: handleNextPage,
-            },
-          ]}
-        />
-      ) : (
-        <div />
-      )}
+
+      <Footer
+        buttons={[
+          {
+            name: 'Voltar',
+            background: themeContext.secondary,
+            onClick: history.goBack,
+          },
+          {
+            name: 'Continuar',
+            background: themeContext.primary,
+            onClick: handleNextPage,
+          },
+        ]}
+      />
     </>
   );
 }

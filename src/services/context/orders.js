@@ -22,10 +22,7 @@ export default function OrdersProvider({ children }) {
     // address
     // phone
     let pizzas = order.pizzas;
-    console.log('PIZZAS ANTIGAS', order.pizzas);
-    console.log('QUANTIAT', quantity);
     for (let i = 0; i < quantity; i++) {
-      console.log('Adicionando', pizza);
       pizzas.push(pizza);
     }
     setPizza(null);

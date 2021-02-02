@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useEffect } from 'react';
 import { withRouter, useHistory, Redirect } from 'react-router-dom';
 
 import Button from 'components/Button';
@@ -7,11 +7,9 @@ import { useAuth, useOrders } from 'services';
 
 import { singularOrPlural } from 'utils/functions';
 
-const Footer = ({ buttons, loading }) => {
+const Footer = ({ buttons }) => {
   const { order, pizza } = useOrders();
   const { userInfo } = useAuth();
-
-  const history = useHistory();
 
   const { user } = userInfo;
 
@@ -78,9 +76,7 @@ const Footer = ({ buttons, loading }) => {
         </div>
       </Container>
     );
-  }, [pizza]);
-
-  if (loading) return <p>Opaaa</p>;
+  }, [pizza, buttons]);
 
   return render;
 };

@@ -16,7 +16,6 @@ const ChooseFlavours = () => {
 
   const themeContext = useContext(ThemeContext);
 
-  const [loading, setLoading] = useState(false);
   useEffect(() => {
     setSelectedFlavours([]);
   }, []);
@@ -43,17 +42,14 @@ const ChooseFlavours = () => {
     return boolean;
   };
   const onSelectFlavour = (flavour) => {
-    setLoading(true);
     if (isSelected(flavour.id)) {
       let newValues = selectedFlavours.filter(
         (selected) => selected.id !== flavour.id
       );
 
-      setTimeout(() => setLoading(false), 1);
       return setSelectedFlavours(newValues);
     }
     if (selectedFlavours.length >= pizza.flavours) {
-      setTimeout(() => setLoading(false), 1);
       return toast.dark(
         `Você só pode selecionar ${singularOrPlural(
           pizza.flavours,
@@ -62,11 +58,9 @@ const ChooseFlavours = () => {
         )}`
       );
     }
-    setTimeout(() => setLoading(false), 1);
     setSelectedFlavours([...selectedFlavours, flavour]);
   };
   const handleNextPage = () => {
-    console.log(selectedFlavours.length);
     if (selectedFlavours.length < 1) {
       return toast.dark('Informe pelo menos 1 sabor');
     }
@@ -138,24 +132,20 @@ const ChooseFlavours = () => {
           ))}
         </div>
       </Container>
-      {!loading ? (
-        <Footer
-          buttons={[
-            {
-              name: 'Voltar',
-              background: themeContext.secondary,
-              onClick: () => history.goBack(),
-            },
-            {
-              name: 'Continuar',
-              background: themeContext.primary,
-              onClick: handleNextPage,
-            },
-          ]}
-        />
-      ) : (
-        <div />
-      )}
+      <Footer
+        buttons={[
+          {
+            name: 'Voltar',
+            background: themeContext.secondary,
+            onClick: () => history.goBack(),
+          },
+          {
+            name: 'Continuar',
+            background: themeContext.primary,
+            onClick: handleNextPage,
+          },
+        ]}
+      />
     </>
   );
 };
