@@ -20,4 +20,15 @@ export const Container = styled.div`
       align-items: center;
     }
   }
+  .column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+
+    > h3 {
+      margin-bottom: 12px;
+    }
+  }
 `;

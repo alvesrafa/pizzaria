@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import { ThemeContext } from 'styled-components';
 import { useHistory, Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -13,7 +13,7 @@ const ChooseFlavours = () => {
   const history = useHistory();
   const [selectedFlavours, setSelectedFlavours] = useState([]);
   const { pizza, addData } = useOrders();
-  const { flavours, id } = pizza;
+
   const themeContext = useContext(ThemeContext);
 
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ const ChooseFlavours = () => {
       </div>
       <div className="item-body">
         <h4>{flavour.name}</h4>
-        <p>{numberToMoney(flavour.value[id])}</p>
+        <p>{numberToMoney(flavour.value[pizza.id])}</p>
       </div>
     </ItemFlavour>
   );
@@ -52,13 +52,13 @@ const ChooseFlavours = () => {
       setTimeout(() => setLoading(false), 1);
       return setSelectedFlavours(newValues);
     }
-    if (selectedFlavours.length >= flavours) {
+    if (selectedFlavours.length >= pizza.flavours) {
       setTimeout(() => setLoading(false), 1);
       return toast.dark(
         `Você só pode selecionar ${singularOrPlural(
-          flavours,
-          `${flavours} sabor`,
-          `${flavours} sabores`
+          pizza.flavours,
+          `${pizza.flavours} sabor`,
+          `${pizza.flavours} sabores`
         )}`
       );
     }
@@ -122,9 +122,9 @@ const ChooseFlavours = () => {
             {' '}
             Escolha até{` `}
             {singularOrPlural(
-              flavours,
-              `${flavours} sabor`,
-              `${flavours} sabores`
+              pizza.flavours,
+              `${pizza.flavours} sabor`,
+              `${pizza.flavours} sabores`
             )}
           </h3>
         </div>

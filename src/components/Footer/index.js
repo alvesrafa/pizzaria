@@ -7,18 +7,32 @@ import { useAuth, useOrders } from 'services';
 
 import { singularOrPlural } from 'utils/functions';
 
-const Footer = ({ buttons }) => {
+const Footer = ({ buttons, loading }) => {
   const { order, pizza } = useOrders();
   const { userInfo } = useAuth();
+
   const history = useHistory();
+
   const { user } = userInfo;
 
   const render = useMemo(() => {
     if (!pizza) {
       const { pizzas } = order;
+
       return (
         <Container>
-          <div className="content">Você tem {pizzas.length} no seu pedido</div>
+          <div className="column">
+            <h3>
+              Você tem{' '}
+              {singularOrPlural(
+                pizzas.length,
+                `${pizzas.length} pizza`,
+                `${pizzas.length} pizzas`
+              )}{' '}
+              no seu pedido
+            </h3>
+            {pizzas.length > 0 && <Button>Finalizar pedido</Button>}
+          </div>
         </Container>
       );
     }
@@ -65,6 +79,8 @@ const Footer = ({ buttons }) => {
       </Container>
     );
   }, [pizza]);
+
+  if (loading) return <p>Opaaa</p>;
 
   return render;
 };

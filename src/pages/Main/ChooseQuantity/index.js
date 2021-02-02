@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useCallback, useContext } from 'react';
 import { useHistory, Redirect } from 'react-router-dom';
 import { ThemeContext } from 'styled-components';
 
@@ -12,14 +12,17 @@ import { toast } from 'react-toastify';
 
 export default function ChooseQuantity() {
   const [quantidade, setQuantidade] = useState(1);
-
+  const [loading, setLoading] = useState(false);
   const oneMore = () => {
-    setQuantidade((prev) => prev + 1);
+    setLoading(true);
+    setQuantidade(quantidade + 1);
+    setTimeout(() => setLoading(false), 1);
   };
   const oneLess = () => {
     if (quantidade <= 1) return;
-
-    setQuantidade((prev) => prev - 1);
+    setLoading(true);
+    setQuantidade(quantidade - 1);
+    setTimeout(() => setLoading(false), 1);
   };
 
   const history = useHistory();
@@ -29,9 +32,12 @@ export default function ChooseQuantity() {
   const handleNextPage = () => {
     if (quantidade < 1) return toast.error('Quantidade selecionada inválida');
 
+    console.log('A quantidade q to mandando', quantidade);
+
     addPizza(quantidade);
     history.push('/');
   };
+
   if (!pizza) return <Redirect to="/" />;
 
   return (
@@ -53,20 +59,24 @@ export default function ChooseQuantity() {
           </div>
         </div>
       </Container>
-      <Footer
-        buttons={[
-          {
-            name: 'Voltar',
-            background: themeContext.secondary,
-            onClick: () => history.goBack(),
-          },
-          {
-            name: 'Continuar',
-            background: themeContext.primary,
-            onClick: handleNextPage,
-          },
-        ]}
-      />
+      {!loading ? (
+        <Footer
+          buttons={[
+            {
+              name: 'Voltar',
+              background: themeContext.secondary,
+              onClick: history.goBack,
+            },
+            {
+              name: 'Continuar',
+              background: themeContext.primary,
+              onClick: handleNextPage,
+            },
+          ]}
+        />
+      ) : (
+        <div />
+      )}
     </>
   );
 }
