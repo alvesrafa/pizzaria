@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 import { useHistory, Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -23,7 +23,7 @@ const ChooseFlavours = () => {
   const PizzaFlavour = ({ flavour, className }) => (
     <ItemFlavour className={className} onClick={() => onSelectFlavour(flavour)}>
       <div className="item-header">
-        <img src={flavour.image} />
+        <img src={flavour.image} alt="Imagem da pizza" />
       </div>
       <div className="item-body">
         <h4>{flavour.name}</h4>

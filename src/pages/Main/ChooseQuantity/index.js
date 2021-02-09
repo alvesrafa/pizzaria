@@ -8,6 +8,8 @@ import { useOrders } from 'services';
 
 import { AiOutlinePlus, AiOutlineLine } from 'react-icons/ai';
 
+import { singularOrPlural } from 'utils/functions';
+
 import { toast } from 'react-toastify';
 
 export default function ChooseQuantity() {
@@ -32,14 +34,20 @@ export default function ChooseQuantity() {
     addPizza(quantidade);
     history.push('/');
   };
-
   if (!pizza) return <Redirect to="/" />;
 
   return (
     <>
       <Container>
         <div className="item-header">
-          <h3>Quantas pizzas você gostaria com esses sabores</h3>
+          <h3>
+            Quantas pizzas você gostaria com{' '}
+            {singularOrPlural(
+              pizza.selectedFlavours.length,
+              'esse sabor',
+              'esses sabores'
+            )}
+          </h3>
         </div>
         <div className="item-body">
           <h3>{quantidade}</h3>
