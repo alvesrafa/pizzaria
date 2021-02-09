@@ -7,11 +7,18 @@ import { useAuth, useOrders } from 'services';
 
 import { singularOrPlural } from 'utils/functions';
 
+import routes from 'utils/routes';
+
 const Footer = ({ buttons }) => {
+  const history = useHistory();
   const { order, pizza } = useOrders();
   const { userInfo } = useAuth();
 
   const { user } = userInfo;
+
+  const goToCheckout = () => {
+    return history.push(routes.CHECKOUT);
+  };
 
   const render = useMemo(() => {
     if (!pizza) {
@@ -29,7 +36,9 @@ const Footer = ({ buttons }) => {
               )}{' '}
               no seu pedido
             </h3>
-            {pizzas.length > 0 && <Button>Finalizar pedido</Button>}
+            {pizzas.length > 0 && (
+              <Button onClick={goToCheckout}>Finalizar pedido</Button>
+            )}
           </div>
         </Container>
       );

@@ -6,6 +6,8 @@ export const CHOOSE_SIZE = '/sizes';
 export const CHOOSE_FLAVOUR = '/flavours';
 export const CHOOSE_QNT = '/quantity';
 
+export const CHECKOUT = '/checkout';
+
 export default {
   LOGIN,
   MAIN,
@@ -13,4 +15,5 @@ export default {
   CHOOSE_FLAVOUR,
   CHOOSE_QNT,
   STARTING,
+  CHECKOUT,
 };

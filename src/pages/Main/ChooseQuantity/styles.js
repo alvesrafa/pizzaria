@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 export const Container = styled.div`
   width: 100%;
-
+  flex: 1;
   @media (max-width: 550px) {
     padding: 16px;
   }

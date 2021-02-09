@@ -11,17 +11,18 @@ const ChooseSize = lazy(() => import('./ChooseSize'));
 const ChooseFlavours = lazy(() => import('./ChooseFlavours'));
 const ChooseQuantity = lazy(() => import('./ChooseQuantity'));
 const Starting = lazy(() => import('./Starting'));
+const Checkout = lazy(() => import('../Checkout'));
 
 const Main = () => {
   return (
     <Container>
       <Header />
-
       <Switch>
         <Route path={routes.STARTING} exact component={Starting} />
         <Route path={routes.CHOOSE_SIZE} exact component={ChooseSize} />
         <Route path={routes.CHOOSE_FLAVOUR} component={ChooseFlavours} />
         <Route path={routes.CHOOSE_QNT} component={ChooseQuantity} />
+        <Route path={routes.CHECKOUT} component={Checkout} />
       </Switch>
     </Container>
   );
