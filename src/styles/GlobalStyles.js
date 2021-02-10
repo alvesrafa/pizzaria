@@ -15,6 +15,7 @@ export default createGlobalStyle`
   html, body, #root {
     font-size: 16px;
     height: 100vh;
+    overflow-y: auto;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.black};
