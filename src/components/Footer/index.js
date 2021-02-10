@@ -24,15 +24,21 @@ const Footer = ({ buttons }) => {
     if (!pizza) {
       const { pizzas } = order;
 
+      console.log('Pizaas', pizzas);
+
+      const number = (value) => (Number.isInteger(value) ? value : 0);
+
+      const quantity = pizzas.reduce((a, b) => a + number(b.quantity), 0);
+
       return (
         <Container>
           <div className="column">
             <h3>
               Você tem{' '}
               {singularOrPlural(
-                pizzas.length,
-                `${pizzas.length} pizza`,
-                `${pizzas.length} pizzas`
+                quantity,
+                `${quantity} pizza`,
+                `${quantity} pizzas`
               )}{' '}
               no seu pedido
             </h3>

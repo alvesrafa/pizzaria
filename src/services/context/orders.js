@@ -18,13 +18,8 @@ export default function OrdersProvider({ children }) {
     setPizza({ ...pizza, ...values });
   };
   const addPizza = (quantity) => {
-    // pizzas
-    // address
-    // phone
     let pizzas = order.pizzas;
-    for (let i = 0; i < quantity; i++) {
-      pizzas.push(pizza);
-    }
+    pizzas.push({ ...pizza, quantity });
     setPizza(null);
 
     setOrder({ ...order, pizzas });
