@@ -4,6 +4,7 @@ export interface ThemeProps extends DefaultTheme {
   theme: {
     white: CSSObject;
     black: CSSObject;
+    text: CSSObject;
     background: CSSObject;
     orange: CSSObject;
     orangeLight: CSSObject;
@@ -13,6 +14,7 @@ export interface ThemeProps extends DefaultTheme {
 export const light = {
   white: '#FFFFFF',
   black: '#676873',
+  text: '#676873',
   background: '#FAF9FB',
   orange: '#FB9300',
   orangeLight: '#F2E0C9',
@@ -21,6 +23,7 @@ export const light = {
 export const dark = {
   white: '#FFFFFF',
   black: '#676873',
+  text: '#676873',
   background: '#FAF9FB',
   orange: '#FB9300',
   orangeLight: '#F2E0C9',

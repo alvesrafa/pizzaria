@@ -1,23 +1,30 @@
-import { GetServerSideProps } from 'next';
+import Layout from '../components/Layout';
+import Login from './login';
+import Main from './main';
 
-interface HomeProps {
-  level: number;
-  currentExp: number;
-  challengesCompleted: number;
+export default function Page() {
+  // const [session, loading] = useSession();
+
+  if (null)
+    return (
+      <Layout>
+        <Main />
+      </Layout>
+    );
+
+  return (
+    <Layout background="#e2e7f4">
+      <Login />
+    </Layout>
+  );
 }
 
-export default function Home(props: HomeProps) {
-  return <div>Teste</div>;
-}
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  // CTX é o contexto da minha apluicação
-
+// Export the `session` prop to use sessions with Server Side Rendering
+export async function getServerSideProps(ctx) {
+  console.log('Context', ctx);
   return {
     props: {
-      // level: Number(level),
-      // currentExp: Number(currentExp),
-      // challengesCompleted: Number(challengesCompleted),
+      // session: await getSession(context),
     },
   };
-};
+}
