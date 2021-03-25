@@ -19,6 +19,14 @@ const Container = styled.div<ContainerProps>`
   .container {
   }
   .container-with-side {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    @media (max-width: 720px) {
+      flex-direction: column;
+    }
+    transition: all 0.2s;
   }
 `;
 interface LayoutProps {

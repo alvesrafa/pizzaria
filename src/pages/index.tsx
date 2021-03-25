@@ -5,7 +5,7 @@ import Main from './main';
 export default function Page() {
   // const [session, loading] = useSession();
 
-  if (null)
+  if (true)
     return (
       <Layout>
         <Main />
