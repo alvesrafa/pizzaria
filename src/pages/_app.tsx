@@ -1,17 +1,16 @@
 import GlboalStyles from '../styles/GlobalStyles';
 
-import { useTheme } from '../context';
+import { useTheme, ThemeProvider, AuthProvider } from '../context';
 
 function MyApp({ Component, pageProps }) {
-  const {
-    props: {},
-    ThemeProvider,
-  } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <ThemeProvider>
-      <GlboalStyles />
-      <Component />
+      <AuthProvider>
+        <GlboalStyles />
+        <Component />
+      </AuthProvider>
     </ThemeProvider>
   );
 }

@@ -15,7 +15,7 @@ const Container = styled.div<ContainerProps>`
 
   width: 100vw;
   height: 100vh;
-
+  word-wrap: break-word;
   .container {
   }
   .container-with-side {

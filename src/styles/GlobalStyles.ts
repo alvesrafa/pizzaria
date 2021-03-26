@@ -19,7 +19,11 @@ const GlboalStyles = createGlobalStyle<ThemeProps>`
     padding: 0;
     box-sizing: border-box;
   }
-  
+  html, body {
+    width: 100vw;
+    height: 100vh;
+    
+  }
   body {
     background: ${(props) => props.theme.white};
     color: ${(props) => props.theme.text};
@@ -38,7 +42,9 @@ const GlboalStyles = createGlobalStyle<ThemeProps>`
     text-decoration: none;
   }
 
- 
+  ul {
+    list-style-type: none;
+  }
   
 `;
 

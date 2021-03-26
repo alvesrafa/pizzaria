@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { useAuth } from '../../context/AuthContext';
 
 const Card = styled.div`
-  border-radius: 16px;
+  border-radius: 1.5rem;
 
   background: ${({ theme }) => theme.background};
   flex: 1;
@@ -37,6 +38,12 @@ const Card = styled.div`
 `;
 
 export default function Login() {
+  const { login } = useAuth();
+
+  const handleSubmit = () => {
+    login();
+  };
+
   return (
     <div className="container">
       <Card>
@@ -54,7 +61,7 @@ export default function Login() {
           <div className="input-wrapper">
             <input placeholder="Senha" />
           </div>
-          <button>Entrar</button>
+          <button onClick={handleSubmit}>Entrar</button>
         </div>
       </Card>
     </div>

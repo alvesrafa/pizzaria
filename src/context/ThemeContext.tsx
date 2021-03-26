@@ -12,16 +12,11 @@ import { ThemeProvider as Provider } from 'styled-components';
 
 import { dark, light } from '../styles/theme';
 
-export const ThemeContext = createContext({} as ThemeContextProps);
+const ThemeContext = createContext({} as ThemeContextProps);
 
-export const useTheme = () => {
-  return {
-    ThemeProvider,
-    props: useContext(ThemeContext),
-  };
-};
+const useTheme = () => useContext(ThemeContext);
 
-export default function ThemeProvider({ children }: ThemeProviderProps) {
+function ThemeProvider({ children }: ThemeProviderProps) {
   const [theme, setTheme] = useState('light');
 
   const toogleTheme = () => {
@@ -38,3 +33,5 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
     </ThemeContext.Provider>
   );
 }
+
+export { useTheme, ThemeProvider, ThemeContext };

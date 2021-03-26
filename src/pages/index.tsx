@@ -1,11 +1,12 @@
 import Layout from '../components/Layout';
+import { useAuth } from '../context/AuthContext';
 import Login from './login';
 import Main from './main';
 
 export default function Page() {
-  // const [session, loading] = useSession();
-
-  if (true)
+  const { isLogged } = useAuth();
+  console.log('isLogged', isLogged);
+  if (isLogged)
     return (
       <Layout>
         <Main />

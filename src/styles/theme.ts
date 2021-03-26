@@ -15,7 +15,7 @@ export const light = {
   white: '#FFFFFF',
   black: '#676873',
   text: '#676873',
-  background: '#FAF9FB',
+  background: '#faf3ea',
   orange: '#FB9300',
   orangeLight: '#F2E0C9',
 };
