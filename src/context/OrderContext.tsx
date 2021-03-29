@@ -7,6 +7,7 @@ interface OrderProviderProps {
 }
 interface OrderContextProps {
   step: number;
+  changeStep: (number: number) => void;
 }
 
 const OrderContext = createContext({} as OrderContextProps);
@@ -21,6 +22,9 @@ function OrderProvider({ children }: OrderProviderProps) {
     address: {},
     phone: '',
   });
+  const changeStep = (number) => {
+    setStep(number);
+  };
 
   const addPizza = (quantity) => {
     let pizzas = order.pizzas;
@@ -32,7 +36,7 @@ function OrderProvider({ children }: OrderProviderProps) {
   };
 
   return (
-    <OrderContext.Provider value={{ step }}>
+    <OrderContext.Provider value={{ step, changeStep }}>
       <PizzaProvider>{children}</PizzaProvider>
     </OrderContext.Provider>
   );

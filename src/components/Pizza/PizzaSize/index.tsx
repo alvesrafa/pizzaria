@@ -11,11 +11,12 @@ interface PizzaSizeProps {
     slices: number;
     flavours: number;
   };
+  handleSelectSize: (size) => void;
 }
 
-function PizzaSize({ size }: PizzaSizeProps) {
+function PizzaSize({ size, handleSelectSize }: PizzaSizeProps) {
   return (
-    <Container>
+    <Container onClick={handleSelectSize}>
       <div className="item-header">
         <Pizza>
           <span>{size.size}cm</span>

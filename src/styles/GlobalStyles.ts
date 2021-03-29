@@ -13,6 +13,11 @@ const GlboalStyles = createGlobalStyle<ThemeProps>`
       font-size: 87.5%;
     }
   }
+  @media (max-width: 590px) {
+    html {
+      font-size: 67.5%;
+    }
+  }
   
   * {
     margin: 0;
