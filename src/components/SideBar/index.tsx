@@ -7,10 +7,46 @@ import {
   BiLogOutCircle,
   BiMoney,
 } from 'react-icons/bi';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth, useOrder } from '../../context';
 
 function SideBar() {
   const { logout } = useAuth();
+  const { step } = useOrder();
+
+  const menuItems = [
+    {
+      step: 1,
+      render: (
+        <a href={'#'}>
+          <BiHomeAlt />
+        </a>
+      ),
+    },
+    {
+      step: 2,
+      render: (
+        <a href={'#'}>
+          <BiHomeAlt />
+        </a>
+      ),
+    },
+    {
+      step: 3,
+      render: (
+        <a href={'#'}>
+          <BiFoodMenu />
+        </a>
+      ),
+    },
+    {
+      step: 4,
+      render: (
+        <a href={'#'}>
+          <BiFoodMenu />
+        </a>
+      ),
+    },
+  ];
 
   return (
     <Container>
@@ -19,26 +55,13 @@ function SideBar() {
       </div>
       <div className="side-body">
         <ul>
-          <li className="active">
-            <a href={'#'}>
-              <BiHomeAlt />
-            </a>
-          </li>
-          <li>
-            <a href={'#'}>
-              <BiFoodMenu />
-            </a>
-          </li>
-          <li>
-            <a href={'#'}>
-              <BiFoodMenu />
-            </a>
-          </li>
-          <li>
-            <a href={'#'}>
-              <BiMoney />
-            </a>
-          </li>
+          {menuItems.map((item) => {
+            return (
+              <li className={item.step <= step ? 'active' : ''}>
+                {item.render}
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="side-footer">

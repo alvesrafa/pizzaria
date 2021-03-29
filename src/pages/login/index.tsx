@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../context';
 
 const Card = styled.div`
   border-radius: 1.5rem;

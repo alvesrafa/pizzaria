@@ -15,6 +15,8 @@ interface AuthContextProps {
   login: () => any;
   logout: () => any;
   isLogged: boolean;
+  token: string;
+  user: object;
 }
 
 const AuthContext = createContext({} as AuthContextProps);
@@ -23,10 +25,11 @@ const useAuth = () => useContext(AuthContext);
 
 function AuthProvider({ children }: AuthProviderProps) {
   const [isLogged, setIsLogged] = useState(null);
+  const [token, setToken] = useState('');
+  const user = {};
 
   useEffect(() => {
-    const token = Cookie.get('token');
-
+    setToken(Cookie.get('token'));
     if (!token) {
       setIsLogged(false);
     }
@@ -43,7 +46,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   };
 
   return (
-    <AuthContext.Provider value={{ login, logout, isLogged }}>
+    <AuthContext.Provider value={{ login, logout, isLogged, token, user }}>
       {children}
     </AuthContext.Provider>
   );

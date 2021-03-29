@@ -1,2 +1,4 @@
-export { useTheme, ThemeProvider } from './ThemeContext';
-export { useAuth, AuthProvider } from './AuthContext';
+export { useTheme } from './ThemeContext';
+export { useAuth } from './AuthContext';
+export { usePizza } from './PizzaContext';
+export { useOrder } from './OrderContext';

@@ -1,5 +1,10 @@
 import SideBar from '../../components/SideBar';
 import styled from 'styled-components';
+import Size from './Size';
+import Flavour from './Flavour';
+import Quantity from './Quantity';
+
+import { useOrder } from '../../context';
 
 const Content = styled.div`
   border-radius: 4rem;
@@ -25,10 +30,26 @@ const Content = styled.div`
 `;
 
 export default function Main() {
+  const { step } = useOrder();
+  //Tamanho
+  // Sabor
+  // quantidade
+
+  const renderContent = () => {
+    switch (step) {
+      case 1:
+        return <Size />;
+      case 2:
+        return <Flavour />;
+      case 3:
+        return <Quantity />;
+    }
+  };
+
   return (
     <div className="container-with-side">
       <SideBar />
-      <Content></Content>
+      <Content>{renderContent()}</Content>
     </div>
   );
 }

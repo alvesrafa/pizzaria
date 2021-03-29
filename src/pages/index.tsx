@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context';
 import Login from './login';
 import Main from './main';
 
