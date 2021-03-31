@@ -14,9 +14,12 @@ export const Container = styled.div`
   /* margin-right: 2rem; */
 
   @media (max-width: 720px) {
+    flex: 1;
     width: 100%;
-    height: 5rem;
+    overflow: hidden;
+    height: 100%;
     flex-direction: row;
+    padding: 0;
     /* margin-right: 0; */
     /* margin-bottom: 2rem; */
   }

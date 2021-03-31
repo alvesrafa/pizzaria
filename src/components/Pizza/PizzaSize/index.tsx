@@ -16,12 +16,8 @@ interface PizzaSizeProps {
 
 function PizzaSize({ size, handleSelectSize }: PizzaSizeProps) {
   return (
-    <Container onClick={handleSelectSize}>
-      <div className="item-header">
-        <Pizza>
-          <span>{size.size}cm</span>
-        </Pizza>
-      </div>
+    <Container onClick={() => handleSelectSize(size)}>
+      <div className="item-header"></div>
       <div className="item-body">
         <h4>{size.name}</h4>
 

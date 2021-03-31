@@ -29,6 +29,7 @@ export const Pizza = styled.div`
   justify-content: center;
 
   > span {
+    position: absolute;
     font-size: 0.9rem;
     font-weight: bold;
     padding: 0;

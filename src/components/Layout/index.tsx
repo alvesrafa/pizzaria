@@ -24,7 +24,8 @@ const Container = styled.div<ContainerProps>`
     display: flex;
     align-items: center;
     @media (max-width: 720px) {
-      flex-direction: column;
+      display: grid;
+      grid-template-rows: 60px 1fr;
     }
     transition: all 0.2s;
   }
