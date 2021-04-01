@@ -5,6 +5,7 @@ import Flavour from './Flavour';
 import Quantity from './Quantity';
 
 import { useOrder } from '../../context';
+import Starting from './Starting';
 
 const Content = styled.div`
   border-radius: 4rem;
@@ -37,6 +38,8 @@ export default function Main() {
 
   const renderContent = () => {
     switch (step) {
+      case 0:
+        return <Starting />;
       case 1:
         return <Size />;
       case 2:

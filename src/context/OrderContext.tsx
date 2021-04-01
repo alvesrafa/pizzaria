@@ -1,4 +1,10 @@
-import { createContext, useContext, ReactNode, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from 'react';
 import { PizzaProvider } from './PizzaContext';
 import { usePizza } from './PizzaContext';
 
@@ -17,11 +23,13 @@ const useOrder = () => useContext(OrderContext);
 function OrderProvider({ children }: OrderProviderProps) {
   const [step, setStep] = useState(1);
   const { pizza } = usePizza();
+
   const [order, setOrder] = useState({
     pizzas: [],
     address: {},
     phone: '',
   });
+
   const changeStep = (number) => {
     setStep(number);
   };

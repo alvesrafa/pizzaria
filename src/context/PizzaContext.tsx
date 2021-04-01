@@ -1,11 +1,20 @@
-import { createContext, useContext, ReactNode, useState } from 'react';
+import {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from 'react';
 
 interface PizzaProviderProps {
   children: ReactNode;
 }
 interface PizzaContextProps {
   addPizzaInformation: (values: any) => void;
-  pizza: object;
+  pizza: {
+    id: number;
+    size: object;
+  };
 }
 
 const PizzaContext = createContext({} as PizzaContextProps);

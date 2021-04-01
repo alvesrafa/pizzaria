@@ -11,7 +11,7 @@ function Size({}: SizeProps) {
   const { addPizzaInformation } = usePizza();
   const { changeStep } = useOrder();
   const handleSelectSize = (size) => {
-    addPizzaInformation(size);
+    addPizzaInformation({ size });
     changeStep(2);
   };
   return (
@@ -20,7 +20,11 @@ function Size({}: SizeProps) {
       <h4>Escolha o tamanho da sua pizza</h4>
       <div className="content">
         {pizzaSizes.map((size) => (
-          <PizzaSize handleSelectSize={handleSelectSize} size={size} />
+          <PizzaSize
+            key={size.id}
+            handleSelectSize={handleSelectSize}
+            size={size}
+          />
         ))}
       </div>
     </Container>

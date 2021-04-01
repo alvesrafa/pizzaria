@@ -11,9 +11,17 @@ import { useAuth, useOrder } from '../../context';
 
 function SideBar() {
   const { logout } = useAuth();
-  const { step } = useOrder();
+  const { step, changeStep } = useOrder();
 
   const menuItems = [
+    {
+      step: 0,
+      render: (
+        <a href={'#'}>
+          <BiHomeAlt />
+        </a>
+      ),
+    },
     {
       step: 1,
       render: (
@@ -55,9 +63,13 @@ function SideBar() {
       </div>
       <div className="side-body">
         <ul>
-          {menuItems.map((item) => {
+          {menuItems.map((item, i) => {
             return (
-              <li className={item.step <= step ? 'active' : ''}>
+              <li
+                key={i}
+                onClick={() => changeStep(item.step)}
+                className={item.step <= step ? 'active' : ''}
+              >
                 {item.render}
               </li>
             );
