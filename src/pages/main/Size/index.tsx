@@ -10,10 +10,12 @@ interface SizeProps {}
 function Size({}: SizeProps) {
   const { addPizzaInformation } = usePizza();
   const { changeStep } = useOrder();
+
   const handleSelectSize = (size) => {
     addPizzaInformation({ size });
     changeStep(2);
   };
+
   return (
     <Container>
       <h3>Opa opa, bora começar?</h3>
