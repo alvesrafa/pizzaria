@@ -16,7 +16,6 @@ interface PizzaFlavourProps {
 
 function PizzaFlavour({ flavour, handleSelectFlavour }: PizzaFlavourProps) {
   const { pizza } = usePizza();
-  console.log('flavour', flavour, pizza);
   return (
     <Container onClick={() => handleSelectFlavour(flavour)}>
       <div className="item-header">
@@ -24,7 +23,7 @@ function PizzaFlavour({ flavour, handleSelectFlavour }: PizzaFlavourProps) {
       </div>
       <div className="item-body">
         <h4>{flavour.name}</h4>
-        <p>{numberToMoney(flavour.value[pizza?.size.id])}</p>
+        <p>{numberToMoney(flavour.value[pizza?.size?.id])}</p>
       </div>
     </Container>
   );

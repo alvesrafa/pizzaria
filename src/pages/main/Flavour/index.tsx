@@ -8,17 +8,14 @@ import { Container } from './styles';
 interface FlavourProps {}
 
 function Flavour({}: FlavourProps) {
-  const { addPizzaInformation } = usePizza();
-  const { changeStep } = useOrder();
-  const handleSelectFlavour = (flavour) => {
-    addPizzaInformation({ flavour });
-    changeStep(2);
-  };
+  const { addFlavour } = usePizza();
+
   return (
     <Container>
       {flavours.map((flavour) => (
         <PizzaFlavour
-          handleSelectFlavour={handleSelectFlavour}
+          key={flavour.id}
+          handleSelectFlavour={() => addFlavour(flavour)}
           flavour={flavour}
         />
       ))}

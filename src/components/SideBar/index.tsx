@@ -65,11 +65,7 @@ function SideBar() {
         <ul>
           {menuItems.map((item, i) => {
             return (
-              <li
-                key={i}
-                onClick={() => changeStep(item.step)}
-                className={item.step <= step ? 'active' : ''}
-              >
+              <li key={i} className={item.step <= step ? 'active' : ''}>
                 {item.render}
               </li>
             );

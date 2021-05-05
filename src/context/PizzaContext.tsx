@@ -5,12 +5,15 @@ import {
   useState,
   useEffect,
 } from 'react';
+import { useOrder } from './OrderContext';
 
 interface PizzaProviderProps {
   children: ReactNode;
 }
 interface PizzaContextProps {
-  addPizzaInformation: (values: any) => void;
+  addQuantity: (values: any) => void;
+  addFlavour: (values: any) => void;
+  addSize: (values: any) => void;
   pizza: {
     id: number;
     size: object;
@@ -23,13 +26,34 @@ const usePizza = () => useContext(PizzaContext);
 
 function PizzaProvider({ children }: PizzaProviderProps) {
   const [pizza, setPizza] = useState(null);
+  const { changeStep, checkOut } = useOrder();
 
-  const addPizzaInformation = (values) => {
-    setPizza({ ...pizza, ...values });
+  const addSize = (size) => {
+    setPizza({
+      ...pizza,
+      size: size,
+    });
+    changeStep(2);
+  };
+  const addFlavour = (flavour) => {
+    setPizza({
+      ...pizza,
+      flavour: flavour,
+    });
+    changeStep(3);
+  };
+  const addQuantity = (quantity) => {
+    const data = {
+      ...pizza,
+      quantity: quantity,
+    };
+    setPizza(data);
+
+    checkOut();
   };
 
   return (
-    <PizzaContext.Provider value={{ addPizzaInformation, pizza }}>
+    <PizzaContext.Provider value={{ pizza, addQuantity, addFlavour, addSize }}>
       {children}
     </PizzaContext.Provider>
   );

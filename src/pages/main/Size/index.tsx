@@ -8,13 +8,7 @@ import { Container } from './styles';
 interface SizeProps {}
 
 function Size({}: SizeProps) {
-  const { addPizzaInformation } = usePizza();
-  const { changeStep } = useOrder();
-
-  const handleSelectSize = (size) => {
-    addPizzaInformation({ size });
-    changeStep(2);
-  };
+  const { addSize } = usePizza();
 
   return (
     <Container>
@@ -24,7 +18,7 @@ function Size({}: SizeProps) {
         {pizzaSizes.map((size) => (
           <PizzaSize
             key={size.id}
-            handleSelectSize={handleSelectSize}
+            handleSelectSize={() => addSize(size)}
             size={size}
           />
         ))}
