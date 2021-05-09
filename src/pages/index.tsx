@@ -5,7 +5,7 @@ import Main from './main';
 
 export default function Page() {
   const { isLogged } = useAuth();
-  console.log('isLogged', isLogged);
+
   if (isLogged)
     return (
       <Layout>

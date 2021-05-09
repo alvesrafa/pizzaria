@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
 import { flavours } from '../../../common/config';
 import { numberToMoney } from '../../../common/functions';
-import { useOrder, usePizza } from '../../../context';
+import { useOrder } from '../../../context';
 import PizzaFlavour from '../../../components/Pizza/PizzaFlavour';
 import { Container } from './styles';
 
 interface FlavourProps {}
 
 function Flavour({}: FlavourProps) {
-  const { addFlavour } = usePizza();
+  const { addFlavour } = useOrder();
 
   return (
     <Container>

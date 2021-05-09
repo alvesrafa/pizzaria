@@ -5,9 +5,8 @@ import {
   useState,
   useEffect,
 } from 'react';
-import { PizzaProvider } from './PizzaContext';
-import { usePizza } from './PizzaContext';
 
+import Cookie from 'js-cookie';
 interface OrderProviderProps {
   children: ReactNode;
 }
@@ -25,6 +24,13 @@ interface OrderContextProps {
   changeStep: (number: number) => void;
   checkOut: () => void;
   order: OrderProps;
+  addQuantity: (values: any) => void;
+  addFlavour: (values: any) => void;
+  addSize: (values: any) => void;
+  pizza: {
+    id: number;
+    size: object;
+  };
 }
 
 const OrderContext = createContext({} as OrderContextProps);
@@ -33,17 +39,17 @@ const useOrder = () => useContext(OrderContext);
 
 function OrderProvider({ children }: OrderProviderProps) {
   const [step, setStep] = useState(0);
-  const { pizza } = usePizza();
-
-  useEffect(() => {
-    console.log('pizza', pizza);
-  }, [pizza]);
+  const [pizza, setPizza] = useState(null);
 
   const [order, setOrder] = useState<OrderProps>({
     pizzas: [],
     address: {},
     phone: '',
   });
+  useEffect(() => {
+    const orderCookie = JSON.stringify(order);
+    Cookie.set('order', orderCookie);
+  }, [order]);
 
   const changeStep = (number) => {
     if (step >= number) return;
@@ -52,18 +58,56 @@ function OrderProvider({ children }: OrderProviderProps) {
   };
 
   const checkOut = async () => {
-    console.log('a pizza', pizza);
-    let aaaa = [...order.pizzas, pizza];
-    console.log('Como fica o order', aaaa);
-    // await setOrder();
+    let pizzas = [...order.pizzas, pizza];
+    setOrder({
+      ...order,
+      pizzas,
+    });
 
     alert('Opa pizza adicionada');
     setStep(0);
   };
 
+  const addSize = (size) => {
+    setPizza({
+      ...pizza,
+      size: size,
+    });
+    changeStep(2);
+  };
+
+  const addFlavour = (flavour) => {
+    setPizza({
+      ...pizza,
+      flavour: flavour,
+    });
+    changeStep(3);
+  };
+
+  const addQuantity = (quantity) => {
+    const data = {
+      ...pizza,
+      quantity: quantity,
+    };
+    setPizza(data);
+
+    checkOut();
+  };
+
   return (
-    <OrderContext.Provider value={{ step, changeStep, order, checkOut }}>
-      <PizzaProvider>{children}</PizzaProvider>
+    <OrderContext.Provider
+      value={{
+        step,
+        changeStep,
+        order,
+        checkOut,
+        pizza,
+        addQuantity,
+        addFlavour,
+        addSize,
+      }}
+    >
+      {children}
     </OrderContext.Provider>
   );
 }

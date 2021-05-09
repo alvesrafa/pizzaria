@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { numberToMoney, singularOrPlural } from '../../../common/functions';
-import { usePizza } from '../../../context';
+import { useOrder } from '../../../context';
 
 import { Container } from './styles';
 
@@ -15,7 +15,7 @@ interface PizzaFlavourProps {
 }
 
 function PizzaFlavour({ flavour, handleSelectFlavour }: PizzaFlavourProps) {
-  const { pizza } = usePizza();
+  const { pizza } = useOrder();
   return (
     <Container onClick={() => handleSelectFlavour(flavour)}>
       <div className="item-header">

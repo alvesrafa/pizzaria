@@ -1,14 +1,14 @@
 import { ReactNode } from 'react';
 import { pizzaSizes } from '../../../common/config';
 import PizzaSize from '../../../components/Pizza/PizzaSize';
-import { useOrder, usePizza } from '../../../context';
+import { useOrder } from '../../../context';
 
 import { Container } from './styles';
 
 interface SizeProps {}
 
 function Size({}: SizeProps) {
-  const { addSize } = usePizza();
+  const { addSize } = useOrder();
 
   return (
     <Container>

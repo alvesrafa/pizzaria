@@ -1,12 +1,12 @@
 import { ReactNode, useState } from 'react';
-import { useOrder, usePizza } from '../../../context';
+import { useOrder } from '../../../context';
 
 import { Container } from './styles';
 
 interface QuantityProps {}
 
 function Quantity({}: QuantityProps) {
-  const { addQuantity } = usePizza();
+  const { addQuantity } = useOrder();
   const [quantity, setQuantity] = useState(0);
 
   return (

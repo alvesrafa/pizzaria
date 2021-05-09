@@ -1,34 +1,42 @@
 import { useEffect, useState } from 'react';
-import { useOrder } from '../../../context';
+import Cookie from 'js-cookie';
+import Link from 'next/link';
 
+import { useOrder } from '../../../context';
 import { Container } from './styles';
 
-interface StartingProps {}
-
 function Starting() {
+  const [loading, setLoading] = useState(true);
   const [hasPizzas, setHasPizzas] = useState(false);
-  const { order, changeStep, step } = useOrder();
-  const { pizzas } = order;
+  const { changeStep, step } = useOrder();
 
   useEffect(() => {
-    console.log('pizzas', pizzas);
+    const order = Cookie.get('order');
+    const orderCookie = JSON.parse(order);
+    const { pizzas } = orderCookie;
     if (pizzas.length > 0) {
       setHasPizzas(true);
     } else {
       setHasPizzas(false);
     }
-  }, [pizzas]);
+
+    setLoading(false);
+  }, []);
 
   const startAssembly = () => {
     changeStep(1);
   };
+
+  if (loading) return <p>loading</p>;
 
   if (hasPizzas) {
     return (
       <Container>
         <h1>Opa bora </h1>
         <button onClick={startAssembly}>Adicionar nova pizza</button>
-        <button>Finalizar pedido</button>
+        <Link href="/main/checkout">
+          <button>Finalizar pedido</button>
+        </Link>
       </Container>
     );
   }
