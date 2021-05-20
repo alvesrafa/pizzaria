@@ -5,28 +5,23 @@ import { useOrder } from '../../../context';
 import { Container } from './styles';
 
 interface PizzaFlavourProps {
+  isSelected: boolean;
   flavour: {
     id: number;
     image: string;
     name: string;
     value: object;
   };
-  handleSelectFlavour: (size) => void;
+  handleSelectFlavour: (flavour) => void;
 }
 
-function PizzaFlavour({ flavour, handleSelectFlavour }: PizzaFlavourProps) {
+function PizzaFlavour({
+  flavour,
+  handleSelectFlavour,
+  isSelected,
+}: PizzaFlavourProps) {
   const { pizza } = useOrder();
-  return (
-    <Container onClick={() => handleSelectFlavour(flavour)}>
-      <div className="item-header">
-        <img src={flavour.image} alt="Imagem da pizza" />
-      </div>
-      <div className="item-body">
-        <h4>{flavour.name}</h4>
-        <p>{numberToMoney(flavour.value[pizza?.size?.id])}</p>
-      </div>
-    </Container>
-  );
+  return <Container onClick={() => handleSelectFlavour(flavour)}></Container>;
 }
 
 export default PizzaFlavour;

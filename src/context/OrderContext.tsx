@@ -5,14 +5,19 @@ import {
   useState,
   useEffect,
 } from 'react';
-
+import toast from 'react-hot-toast';
 import Cookie from 'js-cookie';
 interface OrderProviderProps {
   children: ReactNode;
 }
 interface PizzaProps {
   id: number;
-  size: object;
+  size: {
+    id: number;
+    flavours: number;
+  };
+  flavours: number;
+  quantity: number;
 }
 interface OrderProps {
   pizzas: PizzaProps[];
@@ -27,10 +32,7 @@ interface OrderContextProps {
   addQuantity: (values: any) => void;
   addFlavour: (values: any) => void;
   addSize: (values: any) => void;
-  pizza: {
-    id: number;
-    size: object;
-  };
+  pizza: PizzaProps;
 }
 
 const OrderContext = createContext({} as OrderContextProps);
@@ -39,17 +41,17 @@ const useOrder = () => useContext(OrderContext);
 
 function OrderProvider({ children }: OrderProviderProps) {
   const [step, setStep] = useState(0);
-  const [pizza, setPizza] = useState(null);
+  const [pizza, setPizza] = useState<PizzaProps>(null);
+
+  useEffect(() => {
+    console.log('pizza', pizza);
+  }, [pizza]);
 
   const [order, setOrder] = useState<OrderProps>({
     pizzas: [],
     address: {},
     phone: '',
   });
-  useEffect(() => {
-    const orderCookie = JSON.stringify(order);
-    Cookie.set('order', orderCookie);
-  }, [order]);
 
   const changeStep = (number) => {
     if (step >= number) return;
@@ -58,17 +60,21 @@ function OrderProvider({ children }: OrderProviderProps) {
   };
 
   const checkOut = async () => {
-    let pizzas = [...order.pizzas, pizza];
-    setOrder({
-      ...order,
-      pizzas,
-    });
+    console.log('pizza', pizza);
+    setTimeout(() => {
+      let pizzas = [...order.pizzas, pizza];
+      setOrder({
+        ...order,
+        pizzas,
+      });
+      toast.success('Pizza adicionada');
 
-    alert('Opa pizza adicionada');
-    setStep(0);
+      setStep(0);
+    }, 1500);
   };
 
   const addSize = (size) => {
+    console.log('Adicionando tamanho: ', size);
     setPizza({
       ...pizza,
       size: size,
@@ -76,22 +82,23 @@ function OrderProvider({ children }: OrderProviderProps) {
     changeStep(2);
   };
 
-  const addFlavour = (flavour) => {
+  const addFlavour = (flavours) => {
+    console.log('Adicionando sabores: ', flavours);
     setPizza({
       ...pizza,
-      flavour: flavour,
+      flavours: flavours,
     });
     changeStep(3);
   };
 
   const addQuantity = (quantity) => {
-    const data = {
+    setPizza({
       ...pizza,
       quantity: quantity,
-    };
-    setPizza(data);
+    });
+    console.log('Addicionou quantidade');
 
-    checkOut();
+    // checkOut();
   };
 
   return (

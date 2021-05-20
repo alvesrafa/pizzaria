@@ -6,9 +6,16 @@ import { Container } from './styles';
 interface QuantityProps {}
 
 function Quantity({}: QuantityProps) {
-  const { addQuantity } = useOrder();
+  const { addQuantity, checkOut } = useOrder();
   const [quantity, setQuantity] = useState(0);
 
+  const finalizarPedido = () => {
+    addQuantity(quantity);
+
+    setTimeout(() => {
+      checkOut();
+    }, 750);
+  };
   return (
     <Container>
       <h1>Informe a quantidade de pizzas dese sabor</h1>
@@ -19,7 +26,7 @@ function Quantity({}: QuantityProps) {
           onChange={(e) => setQuantity(Number(e.target.value))}
         />
 
-        <button onClick={() => addQuantity(quantity)}>Finalizar</button>
+        <button onClick={finalizarPedido}>Finalizar</button>
       </div>
     </Container>
   );

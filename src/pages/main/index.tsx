@@ -6,6 +6,7 @@ import Quantity from './Quantity';
 
 import { useOrder } from '../../context';
 import Starting from './Starting';
+import Checkout from './checkout';
 
 const Content = styled.div`
   border-radius: 4rem;
@@ -32,9 +33,6 @@ const Content = styled.div`
 
 export default function Main() {
   const { step } = useOrder();
-  //Tamanho
-  // Sabor
-  // quantidade
 
   const renderContent = () => {
     switch (step) {
@@ -46,6 +44,8 @@ export default function Main() {
         return <Flavour />;
       case 3:
         return <Quantity />;
+      case 4:
+        return <Checkout />;
     }
   };
 
