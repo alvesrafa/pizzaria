@@ -43,10 +43,10 @@ function Starting() {
         </h1>
         <div>
           <p>Suas pizzas:</p>
-          {order.pizzas.map((pizza) => {
+          {order.pizzas.map((pizza, i) => {
             console.log('pizza', pizza);
             return (
-              <p>
+              <p key={i}>
                 {singularOrPlural(
                   pizza.quantity,
                   '1 pizza',

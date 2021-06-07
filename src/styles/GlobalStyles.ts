@@ -2,7 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 import { ThemeProps } from './theme';
 
 const GlboalStyles = createGlobalStyle<ThemeProps>`
-
   @media (max-width: 1080px) {
     html {
       font-size: 93.75%;

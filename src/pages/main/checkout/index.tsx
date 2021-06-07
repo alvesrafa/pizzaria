@@ -1,3 +1,4 @@
+import {useEffect} from 'react'
 import Layout from '../../../components/Layout';
 import { useOrder } from '../../../context';
 import { Container } from './styles';
@@ -6,6 +7,12 @@ export default function Checkout() {
   const { order } = useOrder();
   const { pizzas } = order;
   const { address } = order;
+
+
+  useEffect(() => {
+    console.log('order', order)
+  }, [order])
+
   return (
     <Container>
       <div>
@@ -30,6 +37,9 @@ export default function Checkout() {
       <input placeholder="Número" />
 
       <input placeholder="Bairro" />
+
+
+      <button>Finalizar</button>
     </Container>
   );
 }
